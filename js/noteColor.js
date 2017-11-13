@@ -19,12 +19,13 @@ let NoteColor = (function(){
         event: function() {
           $(window).on('addNoteColor', function(e, data) {
                 var notesColors = $(selectors.notesItemColor + '[data-id = "'+ data.itemId +'"]').children();
-                $(selectors.notesItem).data('color', data.color);
+                var color = $(selectors.notesItem + '[data-id = "'+ data.itemId +'"]')[0].dataset.color;
                 for(var i = 0; i < notesColors.length; i++) {
-                    if ($(selectors.notesItem).data('color') == $(notesColors[i]).data('color')) {
+                    if (color == $(notesColors[i]).data('color')) {
                         $(notesColors[i]).addClass(selectors.itemActiveMod);
+                        break;
                     }
-                } 
+                }
           })
 
             $(selectors.notesId).on('click', selectors.itemColor, function(e) {
